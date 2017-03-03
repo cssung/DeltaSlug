@@ -1,0 +1,91 @@
+using System;using UnityEngine;
+using System.Collections;
+
+public class Enemy : MonoBehaviour {
+	public Rigidbody2D rb;
+	public float seekThreshold;
+	public float attackCooldown;
+	public bool facingRight;
+	public Vector2 force;           
+	public Transform player;
+	public GameObject shot;			//must be set in editor
+	public Transform shotSpawn;     //must be set in editor
+	private Animator anim;
+	private bool moving;
+	
+	private  StateMachine fsm;
+	
+	void Start() {
+		moving = false;
+		force = new Vector2(50.0f, 0.0f);
+		fsm = new StateMachine (this);
+		fsm.changeState(new SeekState());
+		rb = GetComponent<Rigidbody2D>();
+		player = GameObject.Find("Player").GetComponent<Transform>();
+		facingRight = true;
+		ResetAttackCooldown();
+		anim = GetComponent<Animator> ();
+	}
+	
+	public void FixedUpdate() {
+		if (force.x == 0) {
+			anim.SetBool ("Moving", false);
+		}
+		fsm.Execute();
+	}
+	
+	public void Move(Vector2 force) {
+		anim.SetBool ("Moving", true);
+		if(force.x < 0)
+			FaceLeft();
+		else
+			FaceRight();
+		
+		rb.AddForce(force);
+		Vector2 dv = rb.velocity;
+		dv.x = Mathf.Clamp(dv.x, -1.0f, 1.0f);
+		rb.velocity = dv;
+	}
+	
+	public void FaceRight() {
+		facingRight = true;
+		Vector3 theScale = transform.localScale;
+		theScale.x = Mathf.Abs(theScale.x); 
+		transform.localScale = theScale;
+	}
+	
+	public void FaceLeft() {
+		facingRight = false;
+		Vector3 theScale = transform.localScale;
+		theScale.x = Mathf.Abs(theScale.x); 
+		theScale.x *= -1;
+		transform.localScale = theScale;
+	}
+	
+	//needs to be finished
+	public void Attack(Vector2 TargetDirrection) {
+		if(TargetDirrection.x < 0) {
+			FaceLeft();
+			GameObject shotInstance = Instantiate(shot, shotSpawn.position, shotSpawn.rotation) as GameObject;
+			shotInstance.GetComponent<Rigidbody2D>().velocity = -transform.right * 10;
+		} 
+		else {
+			FaceRight();
+			GameObject shotInstance = Instantiate(shot, shotSpawn.position, shotSpawn.rotation)as GameObject;
+			shotInstance.GetComponent<Rigidbody2D>().velocity = transform.right * 11;
+		}
+		ResetAttackCooldown();
+	}
+	
+	public void ResetAttackCooldown(float newCooldown = 1){
+		attackCooldown = newCooldown;
+	}
+	
+	public void ChangeState(State newState) {
+		fsm.changeState(newState);
+	}
+	
+	public Vector2 VectorToPlayer() {
+		return new Vector2 (player.position.x, player.position.y);
+	}
+}

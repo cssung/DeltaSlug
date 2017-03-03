@@ -1,0 +1,33 @@
+﻿using System;using UnityEngine;
+using System.Collections;
+
+public class Enemy : MonoBehaviour {
+    private  StateMachine fsm;
+	public Rigidbody2D rb;
+	public Transform player;
+	public Vector2 force;
+	
+	void Start () {
+		force = new Vector2 (50.0f, 0.0f);
+        fsm = new StateMachine (this);
+        fsm.changeState(new TestState ());
+		rb = GetComponent<Rigidbody2D> ();
+		player = GameObject.Find("Player").GetComponent<Transform>();
+    }
+
+    public void FixedUpdate () {
+        fsm.Execute();
+    }
+
+    public void changeState (State newState) {
+        fsm.changeState(newState);
+    }
+
+	public Vector2 vectorToPlayer() {
+		return new Vector2 (player.position.x, player.position.y);
+
+	}
+
+
+}
+	

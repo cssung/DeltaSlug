@@ -1,0 +1,58 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class LevelManager : MonoBehaviour {
+
+	public GameObject currentCheckpoint;
+	public float respawnDelay;
+	public Animator anim;
+	public GameObject playerHead;
+
+	private PlayerMovement player;
+	private CameraFollow cameraFollow;
+	
+	void Start () {
+		player = FindObjectOfType<PlayerMovement> ();
+		cameraFollow = FindObjectOfType<CameraFollow> ();
+		GetComponent<CameraFollowUp>().enabled = false;
+		anim = player.GetComponent<Animator>();
+		playerHead = GameObject.FindGameObjectWithTag ("PlayerHead");
+	}
+
+	void Update () {
+	
+	}
+
+	public void RespawnPlayer2()
+	{
+		player.transform.position = currentCheckpoint.transform.position;
+	}
+
+	public void RespawnPlayer()
+	{
+		StartCoroutine ("RespawnPlayerCo");
+	}
+	
+
+	public IEnumerator RespawnPlayerCo()
+	{
+		//bool cameraCheck;
+
+		player.enabled = false;
+		player.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+		playerHead.SetActive (false);
+		anim.SetTrigger("Dead");
+		player.GetComponent<BoxCollider2D> ().enabled = false;
+		player.GetComponent<Rigidbody2D> ().isKinematic = true;
+		//cameraFollow.enabled = false;
+		yield return new WaitForSeconds (respawnDelay);
+		//anim.ResetTrigger ("Dead");
+		playerHead.SetActive (true);
+		player.GetComponent<BoxCollider2D> ().enabled = true;
+		player.GetComponent<Rigidbody2D> ().isKinematic = false;
+		player.transform.position = currentCheckpoint.transform.position;
+		player.enabled = true;
+		//cameraFollow.enabled = true;
+		//player.facingRight = true;
+	}
+}

@@ -1,0 +1,64 @@
+﻿using System;using UnityEngine;
+using System.Collections;
+
+public class Enemy : MonoBehaviour {
+	public Rigidbody2D rb;
+	public float seekThreshold;
+	public float attackCooldown;
+	public bool facingRight;
+	public Vector2 force;
+	public Transform player;
+	private  StateMachine fsm;
+
+	void Start () {
+		force = new Vector2 (50.0f, 0.0f);
+        fsm = new StateMachine (this);
+		fsm.changeState(new SeekState ());
+		rb = GetComponent<Rigidbody2D> ();
+		player = GameObject.Find("Player").GetComponent<Transform>();
+		facingRight = true;
+		ResetAttackCooldown ();
+    }
+
+    public void FixedUpdate () {
+        fsm.Execute();
+    }
+
+	public void Move(Vector2 force){
+		if (force.x < 0)
+			facingRight = false;
+		else
+			facingRight = true;
+
+		rb.AddForce (force);
+		Vector2 dv = rb.velocity;
+		dv.x = Mathf.Clamp (dv.x, -1.0f, 1.0f);
+		rb.velocity = dv;
+	}
+
+	//needs to be finished
+	public void Attack(Vector2 TargetDirrection) {
+		if (TargetDirrection.x < 0) {
+			facingRight = false;
+			Debug.Log("attacking left.");
+		} 
+		else {
+			facingRight = true;
+			Debug.Log("attacking right.");
+		}
+		ResetAttackCooldown ();
+	}
+
+	public void ResetAttackCooldown(float newCooldown = 1){
+		attackCooldown = newCooldown;
+	}
+
+    public void ChangeState (State newState) {
+        fsm.changeState(newState);
+    }
+
+	public Vector2 VectorToPlayer() {
+		return new Vector2 (player.position.x, player.position.y);
+	}
+}
+	

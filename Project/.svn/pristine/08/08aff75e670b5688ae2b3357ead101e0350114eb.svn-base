@@ -1,0 +1,31 @@
+﻿using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+
+public class GunAmmo : MonoBehaviour
+{
+	public static float ammo; // The player's score.
+	public static int   ammo1; //ammo for Gun1
+	public static int   ammo2; //gun2
+	
+	Text text;                      // Reference to the Text component.
+	
+	
+	void Awake ()
+	{
+		// Set up the reference.
+		text = GetComponent <Text> ();
+		
+		// Reset the score.
+		ammo = Mathf.Infinity;
+		ammo1 = 100;
+		ammo2 = 10;
+	}
+	
+	
+	void Update ()
+	{
+		// Set the displayed text to be the word "Score" followed by the score value.
+		text.text = ammo.ToString();
+	}
+}

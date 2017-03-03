@@ -1,0 +1,31 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class PlayerShootingLazer2 : MonoBehaviour {
+
+	public GameObject shot;
+	public Transform shotSpawn;
+	public float fireRate;
+	public float timeBetweenShots = 1f;
+	
+	private float timer;
+	private float nextFire;
+	
+	
+	void Update () 
+	{
+		timer += Time.deltaTime;
+		
+		if (Input.GetButtonDown ("Fire1") && timer >= timeBetweenShots)
+		{
+			Shoot();
+		}
+	}
+	
+	public void Shoot()
+	{
+		timer = 0f;
+		Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+		GunAmmo.ammo1--;
+	}
+}

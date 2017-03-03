@@ -1,0 +1,23 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class DestroyByContact : MonoBehaviour
+
+{
+	public int score = 10;
+
+	void OnTriggerEnter2D(Collider2D other) 
+	{
+		if (gameObject.tag == "Enemy" && other.tag == "Bullet") { 
+			Destroy (other.gameObject);
+			Destroy (gameObject);
+			ScoreManager.score += score;
+		}
+		else if (gameObject.tag == "Obstacles" && other.tag != "Grenade" ) 
+		{
+			Destroy (other.gameObject);
+//			Destroy(gameObject);
+		}
+	
+	}
+}

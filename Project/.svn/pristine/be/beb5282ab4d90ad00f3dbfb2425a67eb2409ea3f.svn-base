@@ -1,0 +1,56 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class MoverGrenade : MonoBehaviour {
+
+
+	//ATTCH TO grenade prefab
+	//mass 20 
+	//gravity scale = 5
+	// Use this for initialization
+	//
+	public GameObject player;
+	public PlayerMovement playerMovement;
+	public float speed;
+	public float shotLife; 
+	
+	void Start() {
+		player = GameObject.Find("Player");
+		playerMovement = player.GetComponent<PlayerMovement>();
+		
+		//so bullets shoot in direction player is facing
+		if(playerMovement.facingRight == true)
+			GetComponent<Rigidbody2D>().velocity = (transform.up + transform.right) * speed;
+		else if(playerMovement.facingRight == false)
+			GetComponent<Rigidbody2D>().velocity = (transform.up + -transform.right) * speed;
+		
+		Destroy (gameObject, shotLife);
+	}
+
+	void Update()
+	{
+
+
+	}
+
+//	public void FixedUpdate(Collider2D other)
+//	{
+//		if (gameObject.tag == "Obstacles" || gameObject.tag == "Enemy") {
+//			other.transform.GetComponent<CircleCollider2D> ().radius = 1.4f;
+//			Debug.Log ("grenade tossed");
+//			Destroy (this.gameObject);
+//		}
+//
+//	}
+
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		//Grenade suppose to explode
+		if(other.gameObject.tag == "Obstacles" || other.gameObject.tag == "Enemy")
+		{
+			this.gameObject.GetComponent<CircleCollider2D>().radius = 1.4f;
+			Debug.Log ("grenade tossed");
+			Destroy (gameObject);
+		}
+	}
+}

@@ -1,0 +1,44 @@
+﻿using UnityEngine;
+using System.Collections;
+
+//ATTACH to player
+
+public class WeaponPickup : MonoBehaviour {
+
+	// Use this for initialization
+
+
+	void Start () {
+
+		//use to find child
+		transform.Find("Gun1").gameObject.SetActive(false);
+		transform.Find("Gun2").gameObject.SetActive(false);
+
+		
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
+
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.tag == "PickLazer") {
+
+			transform.Find("Gun").gameObject.SetActive(false);
+			transform.Find("Gun2").gameObject.SetActive(false);
+			transform.Find("Gun1").gameObject.SetActive(true);
+
+
+		}
+
+		if(other.tag == "PickOP")
+		{
+			transform.Find("Gun").gameObject.SetActive(false);
+			transform.Find("Gun1").gameObject.SetActive(false);
+			transform.Find("Gun2").gameObject.SetActive(true);
+		}
+	}
+}

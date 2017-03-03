@@ -1,0 +1,14 @@
+D:\Programming\CS4310\svn\Temp\bin\Debug\Assembly-CSharp.dll
+D:\Programming\CS4310\svn\Temp\bin\Debug\Assembly-CSharp.pdb
+D:\Programming\CS4310\svn\Temp\bin\Debug\UnityEditor.dll
+D:\Programming\CS4310\svn\Temp\bin\Debug\UnityEditor.iOS.Extensions.Xcode.dll
+D:\Programming\CS4310\svn\Temp\bin\Debug\UnityEngine.dll
+D:\Programming\CS4310\svn\Temp\bin\Debug\UnityEngine.UI.dll
+D:\Programming\CS4310\svn\Temp\bin\Debug\Mono.Cecil.dll
+D:\Programming\CS4310\svn\Temp\bin\Debug\Unity.SerializationLogic.dll
+D:\Programming\CS4310\svn\Temp\bin\Debug\Unity.DataContract.dll
+D:\Programming\CS4310\svn\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+D:\Programming\CS4310\svn\Temp\bin\Debug\Unity.CecilTools.dll
+D:\Programming\CS4310\svn\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
+D:\Programming\CS4310\svn\obj\Debug\Assembly-CSharp.dll
+D:\Programming\CS4310\svn\obj\Debug\Assembly-CSharp.pdb

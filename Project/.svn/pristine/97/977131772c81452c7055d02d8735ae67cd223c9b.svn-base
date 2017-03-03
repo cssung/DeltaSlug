@@ -1,0 +1,275 @@
+fileFormatVersion: 2
+guid: 01949f227cb7f3b4694cf6f1633f007a
+timeCreated: 1431976143
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: BasicEnemyComplete_0
+    21300002: BasicEnemyComplete_1
+    21300004: BasicEnemyComplete_2
+    21300006: BasicEnemyComplete_3
+    21300008: BasicEnemyComplete_4
+    21300010: BasicEnemyComplete_5
+    21300012: BasicEnemyComplete_6
+    21300014: BasicEnemyComplete_7
+    21300016: BasicEnemyComplete_8
+    21300018: BasicEnemyComplete_9
+    21300020: BasicEnemyComplete_10
+    21300022: BasicEnemyComplete_11
+    21300024: BasicEnemyComplete_12
+    21300026: BasicEnemyComplete_13
+    21300028: BasicEnemyComplete_14
+    21300030: BasicEnemyComplete_15
+    21300032: BasicEnemyComplete_16
+    21300034: BasicEnemyComplete_17
+    21300036: BasicEnemyComplete_18
+    21300038: BasicEnemyComplete_19
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 20
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: BasicEnemyComplete_0
+      rect:
+        serializedVersion: 2
+        x: 1010
+        y: 425
+        width: 76
+        height: 75
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BasicEnemyComplete_1
+      rect:
+        serializedVersion: 2
+        x: 1115
+        y: 434
+        width: 55
+        height: 60
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BasicEnemyComplete_2
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 237
+        width: 101
+        height: 187
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BasicEnemyComplete_3
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 237
+        width: 101
+        height: 187
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BasicEnemyComplete_4
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 237
+        width: 101
+        height: 187
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BasicEnemyComplete_5
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 237
+        width: 101
+        height: 187
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BasicEnemyComplete_6
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 237
+        width: 101
+        height: 187
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BasicEnemyComplete_7
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 237
+        width: 101
+        height: 187
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BasicEnemyComplete_8
+      rect:
+        serializedVersion: 2
+        x: 797
+        y: 238
+        width: 101
+        height: 187
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BasicEnemyComplete_9
+      rect:
+        serializedVersion: 2
+        x: 1010
+        y: 345
+        width: 76
+        height: 73
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BasicEnemyComplete_10
+      rect:
+        serializedVersion: 2
+        x: 1102
+        y: 326
+        width: 95
+        height: 91
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BasicEnemyComplete_11
+      rect:
+        serializedVersion: 2
+        x: 1010
+        y: 237
+        width: 81
+        height: 93
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BasicEnemyComplete_12
+      rect:
+        serializedVersion: 2
+        x: 1102
+        y: 221
+        width: 95
+        height: 102
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BasicEnemyComplete_13
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 16
+        width: 118
+        height: 182
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BasicEnemyComplete_14
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 16
+        width: 118
+        height: 182
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BasicEnemyComplete_15
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 16
+        width: 118
+        height: 182
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BasicEnemyComplete_16
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 16
+        width: 118
+        height: 182
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BasicEnemyComplete_17
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 16
+        width: 118
+        height: 182
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BasicEnemyComplete_18
+      rect:
+        serializedVersion: 2
+        x: 889
+        y: 16
+        width: 118
+        height: 182
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BasicEnemyComplete_19
+      rect:
+        serializedVersion: 2
+        x: 1051
+        y: 16
+        width: 118
+        height: 182
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

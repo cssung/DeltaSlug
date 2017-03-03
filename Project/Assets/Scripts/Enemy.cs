@@ -1,0 +1,130 @@
+using UnityEngine;
+using System.Collections;
+
+public class Enemy : MonoBehaviour {
+	public Rigidbody2D rb;
+	public float seekThreshold;
+	public float attackCooldown;
+	public GameObject shot;			//must be set in editor
+	public Transform shotSpawn;     //must be set in editor
+	public Vector2 force;           
+	public Transform player;
+
+	private float contactKillTimer;
+	private bool facingRight;
+	private bool moving;
+	private Animator anim;
+	private LevelManager levelManager;
+	private  StateMachine fsm;
+	
+	void Start() {
+		moving = false;
+		force = new Vector2(50.0f, 0.0f);
+		rb = GetComponent<Rigidbody2D>();
+		player = GameObject.Find("Player").GetComponent<Transform>();
+		levelManager = FindObjectOfType<LevelManager>();
+		facingRight = true;
+		contactKillTimer = 0.75f;
+
+		ResetAttackCooldown();
+		anim = GetComponent<Animator>();
+		fsm = new StateMachine (this);
+		fsm.changeState(new SeekState());
+	}
+	
+	public void FixedUpdate() {
+		fsm.Execute();
+	}
+	
+	public void Move(Vector2 force) {
+		if(force.x < 0)
+			FaceLeft();
+		else
+			FaceRight();
+		
+		rb.AddForce(force);
+		Vector2 dv = rb.velocity;
+		dv.x = Mathf.Clamp(dv.x, -1.0f, 1.0f);
+		rb.velocity = dv;
+	}
+	
+	public void FaceRight() {
+		facingRight = true;
+		Vector3 theScale = transform.localScale;
+		theScale.x = Mathf.Abs(theScale.x); 
+		transform.localScale = theScale;
+	}
+	
+	public void FaceLeft() {
+		facingRight = false;
+		Vector3 theScale = transform.localScale;
+		theScale.x = Mathf.Abs(theScale.x); 
+		theScale.x *= -1;
+		transform.localScale = theScale;
+	}
+	
+	//needs to be finished
+	public void Attack(Vector2 TargetDirrection) {
+		if(!GameObject.FindObjectOfType<LevelManager>().isDead)
+		{
+			if(TargetDirrection.x < 0) {
+				GameObject shotInstance = Instantiate(shot, shotSpawn.position, shotSpawn.rotation) as GameObject;
+				shotInstance.GetComponent<Rigidbody2D>().velocity = -transform.right * 10;
+			} 
+			else {
+				GameObject shotInstance = Instantiate(shot, shotSpawn.position, shotSpawn.rotation)as GameObject;
+				shotInstance.GetComponent<Rigidbody2D>().velocity = transform.right * 11;
+			}
+			ResetAttackCooldown();
+		}
+	}
+	
+	public void ResetAttackCooldown(float newCooldown = 1.5f){
+		attackCooldown = newCooldown + Random.Range(-0.5f, 1.5f);
+	}
+	
+	public void ChangeState(State newState) {
+		fsm.changeState(newState);
+	}
+
+	public bool isFacingRight() {
+		return facingRight;
+	}
+
+	public Vector2 VectorToPlayer() {
+		return new Vector2 (player.position.x, player.position.y);
+	}
+
+	public Animator getAnimmator() {
+		return anim;
+	}
+
+	public void OnCollisionEnter2D(Collision2D collision) {
+		if (collision.gameObject.tag == "Enemy") { 
+			Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());		
+		}	
+	}
+
+	public void OnCollisionStay2D(Collision2D collision) {
+		if (collision.gameObject.tag == "Enemy") { 
+			Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());		
+		}	
+		if (collision.gameObject.name == "Player") {
+			Debug.Log(contactKillTimer);
+
+			if(contactKillTimer <= 0 ) {
+				levelManager.RespawnPlayer();
+				contactKillTimer = 0.75f;
+			}
+			else if (contactKillTimer > 0)
+				contactKillTimer -= Time.deltaTime;
+		}
+		
+	}
+
+	public void OnCollisionExit2D(Collision2D collision) {
+		if (collision.gameObject.tag == "player") { 
+			contactKillTimer = 0.75f;
+		}	
+	}
+}

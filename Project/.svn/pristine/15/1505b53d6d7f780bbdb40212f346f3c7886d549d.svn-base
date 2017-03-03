@@ -1,0 +1,42 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class WeaponLazerPickup : MonoBehaviour {
+
+	//public Sprite gun1;
+	public GameObject player;
+	public GameObject gun1;
+
+	// Use this for initialization
+	void Start () {
+
+	
+
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
+
+	void OnTriggerEnter2D(Collider2D other)
+	{
+
+		if(other.tag == "Player")
+		{
+			//other.transform.Find("Player/Gun/").GetComponent<SpriteRenderer>().enabled = false;
+
+			gun1 = other.gameObject.transform.Find("Player/Gun1/").gameObject;
+
+			gun1.GetComponent<SpriteRenderer>().enabled = false;
+			//other.GetComponentInChildren<SpriteRenderer>().sprite = NS;
+			//other.gameObject.GetComponent<SpriteRenderer>().sprite = knife; 
+			Debug.Log("LAZZERS");
+			Destroy (this.gameObject);
+
+		}
+		//Destroy (this.gameObject);
+
+
+	}
+}

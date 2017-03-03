@@ -1,0 +1,94 @@
+﻿using UnityEngine;
+using System.Collections;
+
+//Attch to gunbarrelend
+//shot = Grenade prefab
+//shotspawn = GunBarrelEnd
+
+public class PlayerGrenade : MonoBehaviour {
+
+	public GameObject shot;
+	public Transform shotSpawn;
+	public float fireRate;
+	public float timeBetweenShots = 1f;
+	
+	private float timer;
+	private float nextFire;
+
+	public float explosiondelay = 1f;
+	public float explosionrate = 1f;
+	public float explosionmaxsize = 50f;
+	public float explosionspeed = 1f;
+	public float currentradius = 0f;
+	bool exploded = false;
+	Collider2D explosionradius;
+
+
+//	static float flyTime= 2.0f;
+//	protected Vector2 ThrowGrenadeVel(Vector2 targetPos, Vector2 throwPos)
+//	{
+//		Vector2 diff = (targetPos - throwPos);
+//		Vector2 grenadeVel;
+//		startVel.X = (diff.X) / travelTime; // we don't factor in gravity for X
+//		// Handles different heights nicely
+//		startVel.Y = (diff.Y - 0.5f * Grenade.gravityY * flyTime* flyTime) / flyTime;
+//		return startVel;     }
+	void Start()
+	{
+		explosionradius = gameObject.GetComponent<CircleCollider2D>();
+	}
+
+	void Update () 
+	{
+		timer += Time.deltaTime;
+		explosiondelay -= Time.deltaTime;
+		if (explosiondelay < 0) 
+		{
+			exploded = true;
+		}
+
+		if (Input.GetButtonDown ("Fire2") && timer >= timeBetweenShots) //KEYDOWN VS BUTTONDOWN
+		{
+			Shoot();
+
+		}
+	}
+	
+	public void Shoot()
+	{
+		timer = 0f;
+		Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+		Debug.Log("grenada");
+	}
+
+	void FixedUpdate()
+	{
+		if (currentradius < explosionmaxsize) {
+			currentradius += explosionrate;
+
+		} else {
+
+			//GameObject.Destroy(this.gameObject.transform.parent.gameObject);
+		}
+
+		//explosionradius.radius = currentradius;
+
+	}
+
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		if (exploded == true) {
+			if(other.gameObject.GetComponent<Rigidbody2D>() != null)
+			{
+				Vector2 target = other.gameObject.transform.position;
+				Vector2 bomb = gameObject.transform.position;
+				Vector2 destination = 20f * (target-bomb);
+
+				other.gameObject.GetComponent<Rigidbody2D>().AddForce(destination);
+			}
+		
+		}
+
+	}
+
+}

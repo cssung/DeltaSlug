@@ -1,0 +1,44 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class LevelManager : MonoBehaviour {
+
+	public GameObject currentCheckpoint;
+	public float respawnDelay;
+
+	private PlayerMovement player;
+	private CameraFollow cameraFollow;
+	
+	void Start () {
+		player = FindObjectOfType<PlayerMovement> ();
+		cameraFollow = FindObjectOfType<CameraFollow> ();
+	}
+
+	void Update () {
+	
+	}
+
+	public void RespawnPlayer()
+	{
+		StartCoroutine ("RespawnPlayerCo");
+	}
+
+	public IEnumerator RespawnPlayerCo()
+	{
+		Debug.Log ("Respawn");
+		player.enabled = false;
+		player.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+		cameraFollow.enabled = false;
+		yield return new WaitForSeconds (respawnDelay);
+		player.transform.position = currentCheckpoint.transform.position;
+		player.enabled = true;
+		cameraFollow.enabled = true;
+
+		//player.facingRight = true;
+	}
+
+	public void Next_lvl()
+	{
+
+	}
+}

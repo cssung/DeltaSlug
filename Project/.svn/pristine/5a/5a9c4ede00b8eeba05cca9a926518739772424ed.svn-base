@@ -1,0 +1,82 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class State  {
+    public State () {
+    }
+
+    public virtual void Update (Enemy e) {
+		Debug.Log("Please derive from State and override update.");
+	}
+
+    public virtual void Enter (Enemy e) {
+		Debug.Log("Please derive from State and override Enter.");
+	}
+
+    public virtual void Exit (Enemy e)  {
+		Debug.Log("Please derive from State and override exit.");
+	}
+}
+
+public class SeekState : State {
+	public SeekState () {
+	}
+			
+	public override void Update (Enemy e) {
+		Transform currentPos = e.GetComponent<Transform> ();
+		Vector2 target = e.vectorToPlayer ();
+		Vector2 start = new Vector2 (currentPos.position.x, currentPos.position.y);
+		Vector2 dirrection = target - start;
+		float xDistance = dirrection.x;
+		xDistance = Mathf.Abs (xDistance);
+
+		if (xDistance < e.seekThreshold) {
+			e.changeState(new AttackState());
+		} 
+		else {
+
+			if (dirrection.x < 0)
+				e.Move (-e.force );
+			else
+				e.Move (e.force);
+		}
+	}
+	
+	public override void Enter (Enemy e) {
+		Debug.Log("Entering seek state.");
+	}
+	
+	public override void Exit (Enemy e)  {
+		Debug.Log("Exiting seek state.");
+	}
+}
+
+public class AttackState : State {
+	public AttackState () {
+	}
+	
+	public override void Update (Enemy e) {
+		Transform currentPos = e.GetComponent<Transform> ();
+		Vector2 target = e.vectorToPlayer ();
+		Vector2 start = new Vector2 (currentPos.position.x, currentPos.position.y);
+		Vector2 dirrection = target - start;
+		float xDistance = dirrection.x;
+		xDistance = Mathf.Abs (xDistance);
+
+		
+		if (xDistance >= e.seekThreshold) {
+			e.changeState(new SeekState());
+		} 
+			
+		Vector2 dv = e.rb.velocity;
+		e.rb.velocity = dv;
+	}
+	
+	public override void Enter (Enemy e) {
+
+	}
+	
+	public override void Exit (Enemy e)  {
+
+	}
+}

@@ -1,0 +1,27 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class CameraControl : MonoBehaviour {
+
+	//private GameObject mainCamera;
+	private GameObject mainCamera;
+	public bool cameraFollow;
+	public bool cameraMoveUp;
+	
+	
+	// Use this for initialization
+	void Start () {
+		mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+		
+	}
+	
+	void OnTriggerEnter2D(Collider2D other) {
+		if (other.gameObject.name == "Player") {
+			mainCamera.GetComponent<CameraFollow>().enabled = cameraFollow;
+			mainCamera.GetComponent<CameraFollowUp>().enabled = cameraMoveUp;
+			Debug.Log ("Camera");
+			
+		}
+		
+	}
+}
