@@ -1,8 +1,5 @@
 # DeltaSlug
 Game prototype made with a team as a class project.
 
-
-
-Code and other assets can be found in Project/Assets folder.
-
+Code and other assets can be found in Project/Assets folder.  
 Game can be found in the Game folder.
