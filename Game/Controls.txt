@@ -1,0 +1,8 @@
+D: Move right
+A: Move left
+S: Crouch
+W: Aim up
+J: fire weapon
+K: Jump
+U: Throw grenade
+ESC: Pause menu
